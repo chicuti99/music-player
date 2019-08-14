@@ -20,7 +20,7 @@ In this challenge you will create a web interface to a blockchain application. T
 
 ## Server
 
-The data are obtained using a rest server in this address: `ec2-18-223-158-118.us-east-2.compute.amazonaws.com`
+The data are obtained using a rest server in this address: `ec2-18-223-158-118.us-east-2.compute.amazonaws.com:3000`
 
 The access is restrict by a authentication token. To obtain this token you have to do a POST request to `api/login` with username and passowrd. The following credentials are provided for you to use in this challenge:
 
@@ -32,14 +32,14 @@ password: user
 Here is the `curl` command for the login:
 
 ```
-curl -k -X POST  http://18.223.158.118:3000/api/login \
+curl -k -X POST  http://ec2-18-223-158-118.us-east-2.compute.amazonaws.com:3000/api/login \
 -d 'username=user&password=user'
 ```
 
 To get the pilots list, you need to send a GET request to `/api/mainchannel/airlog-backend/Aeronauta?resolve=true`. The following example demonstrates how to execute this transaction:
 
 ```
-curl -k -X GET  'http://18.223.158.118:3000/api/mainchannel/airlog-backend/Aeronauta?resolve=true' -H "Authorization: Bearer $TOKEN"
+curl -k -X GET  'http://ec2-18-223-158-118.us-east-2.compute.amazonaws.com:3000/api/mainchannel/airlog-backend/Aeronauta?resolve=true' -H "Authorization: Bearer $TOKEN"
 ```
 
 Notice that the `$TOKEN` should be modified by the token obtained in login.
