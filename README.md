@@ -3,7 +3,11 @@
 In this challenge you will create a web interface to a blockchain application. 
 In this application you must implement a simple phonebook.
 
-Your application should be able to add/remove/edit and show all current contacts.
+# Requirements
+
+- Your application should be able to add/remove/edit and show all current contacts.
+
+- Use React for development (all ui library are allowed)
 
 ## Instructions
 
