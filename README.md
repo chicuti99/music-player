@@ -7,7 +7,7 @@ In this application you must implement a simple phonebook.
 
 - Your application should be able to add/remove/edit and show all current contacts.
 
-- Use React for development (all ui library are allowed)
+- Use React for development (all UI libraries are allowed)
 
 ## Instructions
 
