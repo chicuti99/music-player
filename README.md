@@ -1,6 +1,8 @@
 # GoLedger Challenge
 
-In this challenge you will create a web interface to a blockchain application. This application is responsible to manage the phonebook.
+In this challenge you will create a web interface to a blockchain application. 
+In this application you must implement a simple phonebook.
+Your application should be able to add/remove/edit and show all current contacts.
 
 ## Instructions
 
