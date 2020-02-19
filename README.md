@@ -14,7 +14,7 @@ In this challenge you will create a web interface to a blockchain application. T
 
 ## Server
 
-The data are obtained using a rest server at this address: `http://ec2-100-27-2-255.compute-1.amazonaws.com/`
+The data are obtained using a rest server at this address: `http://ec2-100-27-2-255.compute-1.amazonaws.com/api/`
 
 Also, a Swagger with the endpoints specifications for the operations is provided at this address: `http://ec2-100-27-2-255.compute-1.amazonaws.com/api-docs/`
 
