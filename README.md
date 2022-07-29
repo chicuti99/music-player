@@ -1,6 +1,6 @@
 # GoLedger Challenge
 
-In this challenge you will create a web interface to a blockchain application. In this application you must implement an race event, car and driver dashboard.
+In this challenge you will create a web interface to a blockchain application. In this application you must implement a race event, car and driver dashboard.
 
 # Requirements
 
