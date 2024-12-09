@@ -54,7 +54,7 @@ export const Tables = ({content, type}: ITables) => {
                         <tr key={rowIndex}>
                             {header.map((head, colIndex) => (
                                 <td key={`${rowIndex}-${colIndex}`}>
-                                    {head.toLowerCase() === "songs" && isPlaylist(item) && Array.isArray(item.songs) ? (
+                                    {(head.toLowerCase() === "songs" || head.toLowerCase() === "Musics") && isPlaylist(item) && (Array.isArray(item.songs) || Array.isArray(item.musics)) ? (
                                         <ul>
                                             {item.songs.map((song, index) => (
                                                 <li key={index}>{song}</li>

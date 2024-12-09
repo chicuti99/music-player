@@ -1,10 +1,10 @@
 import { Button, Checkbox } from "@mui/material";
 import Input from "../../../utils/Button/Input";
-import { AddMusicButton, AddPlaylistButton, Container, DeleteMusicButton } from "./styles";
+import { AddMusicButton, AddPlaylistButton, Container } from "./styles";
 import { useEffect, useState } from "react";
 import { useInfoContext } from "..";
 import { Tables } from "../tables";
-import { AlbumAPI, AlbumResponse, ArtistResponse, ITablesPlaylists, ITablesSongs, Option, PlaylistResponse, SongResponse } from "../../../utils/interfaces";
+import {  AlbumResponse, ArtistResponse, ITablesPlaylists, Option, PlaylistResponse, SongResponse } from "../../../utils/interfaces";
 import toast from "react-hot-toast";
 import api from "../../../services/api";
 import Select from "../../../utils/select";
@@ -20,7 +20,7 @@ export const Playlist = () => {
   const [artists, setArtists] = useState<ArtistResponse[]>([]);
   const [albums, setAlbums] = useState<AlbumResponse[]>([]);
   const [storedSongs, setStoredSongs] = useState<SongResponse[]>([]);
-  const[isPrivate,setIsPrivate] = useState(false)
+  const[isPrivate,setIsPrivate] = useState(false);
 
   useEffect(() => {
     setHeader(["Name", "Musics","Songs"]);
@@ -72,6 +72,8 @@ export const Playlist = () => {
             songs: data.songs.map((song) => song["@key"]),
             musics: data.songs.map((song) => {
               const findSong = parsedSongs.find((tempSong) => tempSong["@key"] === song["@key"]);
+              console.log(song);
+              console.log(data);
               return findSong?.name || "";
             })
             
@@ -103,8 +105,9 @@ export const Playlist = () => {
         deletePlaylist();
       }
 
-      console.log(selectedPlaylist)
-    
+      else if(action === "edit"){
+        setName(selectedPlaylist.name)
+      }
   }, [selectedPlaylist]);
 
   const handleAddPlaylist = async () => {
@@ -182,6 +185,7 @@ export const Playlist = () => {
     }
   };
 
+  
 
   return (
     <Container>
@@ -204,16 +208,6 @@ export const Playlist = () => {
         value={selectedSongs?.value || ""}
       />
 
-      <Select
-        label="current musics"
-        options={songsList}
-        labelStyle={{ paddingBottom: 5 }}
-        onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-          const song_selected = songsList.find((song) => song.value === e.target.value);
-          setSelectedSongs(song_selected);
-        }}
-        value={selectedSongs?.value || ""}
-      />
 
     <div style={{ display: "flex", alignItems: "center" }}>
       <Checkbox
@@ -232,9 +226,6 @@ export const Playlist = () => {
           Add music
         </Button>
 
-        <Button variant="contained" sx={DeleteMusicButton} onClick={handleUpdatePlaylist}>
-          Delete music
-        </Button>
 
         <Button variant="contained" sx={AddPlaylistButton} onClick={handleUpdatePlaylist}>
           Edit Playlist

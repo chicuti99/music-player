@@ -105,7 +105,7 @@ export interface ITablesPlaylists {
   name: string;
   songs:string[];
   private:boolean;
-  musics?: string[]
+  musics: string[]
 }
 
 export interface ITablesArtists {
