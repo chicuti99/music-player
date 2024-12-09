@@ -23,7 +23,7 @@ export const Playlist = () => {
   const[isPrivate,setIsPrivate] = useState(false);
 
   useEffect(() => {
-    setHeader(["Name", "Musics","Songs"]);
+    setHeader(["Name", "Musics"]);
   }, [setHeader]);
 
   function getAlbumsAndArtists(parsedSongs:SongResponse[]) {
@@ -72,8 +72,7 @@ export const Playlist = () => {
             songs: data.songs.map((song) => song["@key"]),
             musics: data.songs.map((song) => {
               const findSong = parsedSongs.find((tempSong) => tempSong["@key"] === song["@key"]);
-              console.log(song);
-              console.log(data);
+
               return findSong?.name || "";
             })
             
@@ -97,7 +96,13 @@ export const Playlist = () => {
       }
     };
 
-    await api.post('/invoke/deleteAsset', query);
+    try{
+      await api.post('/invoke/deleteAsset', query);
+    }
+
+    catch(err){
+      toast.error("Error")
+    }
   };
 
   useEffect(() => {
@@ -140,7 +145,6 @@ export const Playlist = () => {
       await api.post('/invoke/createAsset', playlistToSend);
       toast.success("Playlist added successfully!");
     } catch (error) {
-      console.log(albums, listOfSelectedSongs);
       toast.error("Error adding playlist.");
     }
   };
@@ -153,7 +157,7 @@ export const Playlist = () => {
         private: isPrivate,
         songs: listOfSelectedSongs.map((song) => ({
           "@assetType": "song",
-          "@key": song.value, // A chave da música está em `value`
+          "@key": song.value,
         })),
       },
     };

@@ -12,6 +12,5 @@ export const Navigation = styled.nav`
     padding 5px;
     display:flex;
     align-items:center;
-    //justify-content:center;
     padding-left:10rem;
 `

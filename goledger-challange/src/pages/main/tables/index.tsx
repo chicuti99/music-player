@@ -28,7 +28,6 @@ export const Tables = ({content, type}: ITables) => {
         if (isAlbum(item)) {
           setSelectedAlbum(item);
         } else if (isPlaylist(item)) {
-            console.log(item)
           setSelectedPlaylist(item);
         } else if (isSong(item)) {
           setSelectedSong(item);
@@ -54,10 +53,10 @@ export const Tables = ({content, type}: ITables) => {
                         <tr key={rowIndex}>
                             {header.map((head, colIndex) => (
                                 <td key={`${rowIndex}-${colIndex}`}>
-                                    {(head.toLowerCase() === "songs" || head.toLowerCase() === "Musics") && isPlaylist(item) && (Array.isArray(item.songs) || Array.isArray(item.musics)) ? (
+                                    {(head.toLowerCase() === "songs" || head.toLowerCase() === "musics") && isPlaylist(item) ? (
                                         <ul>
-                                            {item.songs.map((song, index) => (
-                                                <li key={index}>{song}</li>
+                                            {(item[head.toLowerCase() as keyof typeof item] as string[]).map((entry, index) => (
+                                                <li key={index}>{entry}</li>
                                             ))}
                                         </ul>
                                     ) : (

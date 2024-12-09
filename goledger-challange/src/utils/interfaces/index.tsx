@@ -114,14 +114,6 @@ export interface ITablesArtists {
 }
 
 export interface ITables {
-  // Title?: string;
-  // Artist?:string;
-  // Year?:string;
-  // Actions?:string;
-  // Description?:string;
-  // Genre?:string;
-  // Album?:string;
-  // Duration?:string;
   header:string[];
   content: ITablesAlbums[] | ITablesArtists[] | ITablesPlaylists[] |ITablesSongs[];
   type:string;
@@ -171,5 +163,5 @@ export interface SelectProps {
   fontSize?: string;
   containerStyle?: React.CSSProperties;
   labelStyle?: React.CSSProperties;
-  [key: string]: any; // Para suportar atributos adicionais como `onChange`, `value`, etc.
+  [key: string]: any;
 }

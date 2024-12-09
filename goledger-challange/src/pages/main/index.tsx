@@ -29,10 +29,10 @@ const InfoContext = createContext<InfoContextType>({
     setSelectedSong: () => {},
     selectedArtist: { name: '', country: '' },
     setSelectedArtist: () => {},
-    selectedPlaylist: { name: '', private: false, songs: [] },
+    selectedPlaylist: { name: '', private: false, songs: [],musics:[] },
     setSelectedPlaylist: () => {},
     setAction: () => {},
-    action: ''
+    action: '',
   });
   
   
@@ -47,7 +47,7 @@ export const Main = () =>{
     const [selectedAlbum,setSelectedAlbum] = useState<ITablesAlbums>({artist:'',name:'',year:2000});
     const [selectedSong,setSelectedSong] = useState<ITablesSongs>({album:'',name:'',artist:''});
     const [selectedArtist,setSelectedArtist] = useState<ITablesArtists>({name:'',country:''});
-    const [selectedPlaylist,setSelectedPlaylist] = useState<ITablesPlaylists>({name:'',private:false,songs:[]})
+    const [selectedPlaylist,setSelectedPlaylist] = useState<ITablesPlaylists>({name:'',private:false,songs:[],musics:[]})
     const [artist,setArtist] = useState<ITablesArtists[]>([]);
     const [playlist,setPlaylist] = useState<ITablesPlaylists[]>([]);
     const [navOption,setNavOption] = useState(options[2]);

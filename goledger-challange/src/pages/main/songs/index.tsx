@@ -19,6 +19,9 @@ export const Songs = () => {
   const[selectedArtist,setSelectedArtist] = useState<Option>();
   const[selectedAlbum,setSelectedAlbum] = useState<Option>();
   const[isCascade,setIsCascade] = useState(false);
+  const[localAlbum,setLocalAlbum] = useState<AlbumResponse[]>([])
+  const[localArtist,setLocalArtist] = useState<ArtistResponse[]>([])
+
 
   useEffect(() => {
     setHeader(["Name", "Album","artist"]);
@@ -34,6 +37,7 @@ export const Songs = () => {
         const opt = {label: artist.name,value:artist["@key"]}
         artists_list.push(opt)
       })
+      setLocalArtist(parsedArtist)
       setArtist(artists_list);
     }
   }
@@ -48,7 +52,7 @@ export const Songs = () => {
         const opt = {label : album.name , value: album["@key"]}
         albums_list.push(opt);
        })
-
+       setLocalAlbum(parsedAlbums)
        setAlbum(albums_list)
     }
   }
@@ -171,6 +175,25 @@ export const Songs = () => {
       
   }
 
+  function handleChangeAlbumOrArtist(e:React.ChangeEvent<HTMLSelectElement>){
+      
+        try{
+          const album = localAlbum.find((album:AlbumResponse) => album.artist["@key"] === e.target.value);
+        setSelectedAlbum({
+          label:album?.name || '',
+          value: album?.["@key"] || ''
+        })
+        }
+        catch(err){
+          
+        }
+
+        const artist_selected = artist.find((art)=> art.value === e.target.value)
+        setSelectedArtist(artist_selected);
+      
+
+  }
+
   
   return (
     <Container>
@@ -185,16 +208,13 @@ export const Songs = () => {
       <Select label="Album" options={album} labelStyle={{ paddingBottom: 5 }} 
         onChange={(e:React.ChangeEvent<HTMLSelectElement>)=> {
           const album_selected = album.find((alb)=> alb.value === e.target.value)
-           setSelectedArtist(album_selected)
+          setSelectedAlbum(album_selected)
         }}
         value={selectedAlbum?.value || ""}
       />
 
       <Select label="Artist" options={artist} labelStyle={{ paddingBottom: 5 }}
-        onChange={(e:React.ChangeEvent<HTMLSelectElement>)=> {
-          const artist_selected = artist.find((art)=> art.value === e.target.value)
-           setSelectedArtist(artist_selected)
-        }}
+        onChange={(e:React.ChangeEvent<HTMLSelectElement>)=> handleChangeAlbumOrArtist(e)}
         value={selectedArtist?.value || ""}
       />
 

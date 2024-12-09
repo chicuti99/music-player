@@ -6,7 +6,7 @@ import { useInfoContext } from "..";
 import { Tables } from "../tables";
 import { ArtistResponse, ITablesArtists } from "../../../utils/interfaces";
 import toast from "react-hot-toast";
-import api from "../../../services/api";
+import api, { setBasicAuth } from "../../../services/api";
 
 export const Artist = () => {
   const { setHeader,header,artist,setArtist,selectedArtist,action} = useInfoContext();
@@ -16,6 +16,28 @@ export const Artist = () => {
   const [country,setCountry] = useState('');
   
 
+  
+  const getData = async () => {
+    setBasicAuth();
+  
+    const query = {
+      query: {
+        selector: {
+          "@assetType": `artist`,
+        },
+      },
+    };
+  
+    try {
+      const response = await api.post('/query/search', query);
+      localStorage.setItem(`@Artist`, JSON.stringify(response.data.result));
+      getArtist(); // Atualiza o estado com os novos dados do localStorage
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      toast.error("Failed to fetch artist data");
+    }
+  };
+  
   useEffect(() => {
     setHeader(["Name", "Country"]);
   }, [setHeader]);
@@ -28,7 +50,14 @@ export const Artist = () => {
       }
     }
 
+    try{
     await api.post('/invoke/deleteAsset',query);
+    toast.success("sucesso");
+    }
+    catch(err){
+      toast.error("error")
+    }
+    getData();
   }
   useEffect(() => {
     if(action === 'delete'){
@@ -39,6 +68,7 @@ export const Artist = () => {
       setName(selectedArtist.name);
       setCountry(selectedArtist.country);
     }
+
   },[selectedArtist])
 
   function getArtist() {
@@ -73,7 +103,15 @@ export const Artist = () => {
         }
       
     }
-    await api.post('/invoke/updateAsset',query);
+    try{
+      await api.post('/invoke/updateAsset',query);
+      toast.success("sucesso");
+    }
+
+    catch(err){
+      toast.error("erro")
+    }
+    getData();
     
   }
 
@@ -96,6 +134,8 @@ export const Artist = () => {
     catch(err){
       toast.error("error")
     }
+
+    getData();
     
   }
 

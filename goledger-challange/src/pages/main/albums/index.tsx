@@ -6,7 +6,7 @@ import { useInfoContext } from "..";
 import { Tables } from "../tables";
 import { AlbumResponse, ArtistResponse, ITablesAlbums, Option } from "../../../utils/interfaces";
 import toast from "react-hot-toast";
-import api from "../../../services/api";
+import api, { setBasicAuth } from "../../../services/api";
 import Select from "../../../utils/select";
 
 export const Albums = () => {
@@ -14,12 +14,27 @@ export const Albums = () => {
 
   const options = ['Album','Song','Artist','Playlist'];
   const [title,setTitle] = useState('');
-  const [artist,setArtist] = useState('');
   const [year,setYear] = useState(2000);
   const [artists,setArtists] = useState<Option[]>([])
   const[selectedArtist,setSelectedArtist] = useState<Option>()
   const[isCascade,setIsCascade] = useState(false);
 
+
+  const getData = async() => {
+    setBasicAuth()
+    
+        const query =  {
+            query: {
+                selector : {
+                     "@assetType": `album`
+                }
+            }
+        }
+
+        const response = await api.post('/query/search',query);
+        localStorage.setItem(`@Album`,JSON.stringify(response.data.result));
+
+}
 
   useEffect(() => {
     setHeader(["Name", "Artist", "Year"]);
@@ -38,7 +53,7 @@ export const Albums = () => {
     }
 
     await api.post('/invoke/deleteAsset',query);
-
+    getData();
   }
 
   useEffect(() => {
@@ -114,6 +129,8 @@ export const Albums = () => {
     catch(err){
       toast.error("error")
     }
+
+    getData();
   }
 
   const handleEditAlbum = async ()=> {
@@ -135,6 +152,8 @@ export const Albums = () => {
     catch(err){
       toast.error('error')
     }
+
+    getData();
   }
 
   

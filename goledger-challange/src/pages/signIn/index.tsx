@@ -40,7 +40,7 @@ export const SignIn = ()=> {
       localStorage.setItem('user', JSON.stringify(user));
       localStorage.setItem('isAuthorized', 'true');
       toast.success('Login realizado com sucesso!');
-      navigate('/main'); // Redireciona para /main após sucesso
+      navigate('/main'); 
     }
     }
     catch(err: any){
