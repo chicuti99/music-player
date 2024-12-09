@@ -1,50 +1,32 @@
-# React + TypeScript + Vite
+# Projeto de Gerenciamento de Artistas
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este é um projeto simples para gerenciar artistas, com funcionalidades para criar, editar e excluir dados.
 
-Currently, two official plugins are available:
+## Pré-requisitos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Antes de começar, certifique-se de que o seu ambiente de desenvolvimento atende aos seguintes requisitos:
 
-## Expanding the ESLint configuration
+- **Node.js**: É necessário ter uma versão recente instalada (recomenda-se Node.js 16 ou superior).
+- **npm**: O gerenciador de pacotes do Node.js é usado para instalar as dependências.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Instalando o Node.js e npm
 
-- Configure the top-level `parserOptions` property like this:
+1. **Verifique se já possui o Node.js instalado**:
+   Abra o terminal ou prompt de comando e execute:
+   ```bash
+   node -v
+  
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+2.  **Instalando o node**:
+    Acesse o site oficial do Node.js.
+    Faça o download da versão LTS recomendada para o seu sistema operacional.
+    Siga as instruções do instalador.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+3. **Instalando as dependencias**:
+    npm run dev
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+4. **Iniciando o projeto**;
+    execute npm run dev no terminal,depois va no endereço indicado no terminal
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+5. **Instruções de uso**;
+    use o login psAdmin e senha goledger para entra. apos o login,sera redirecionado para o endereço /main
