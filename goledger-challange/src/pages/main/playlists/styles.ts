@@ -20,3 +20,30 @@ export const AddPlaylistButton = {
         backgroundColor:"#2F2E31"
     }
 }
+
+
+export const AddMusicButton = {
+    borderRadius:'8px',
+    color:'white',
+    backgroundColor:'green',
+    padding:'10px',
+
+    '&:hover' :{
+        transition: 'all 0.3s ease-in-out',
+        transform: 'scale(1.03)',
+        backgroundColor:"#6dd40b"
+    }
+}
+
+export const DeleteMusicButton = {
+    borderRadius:'8px',
+    color:'white',
+    backgroundColor:'red',
+    padding:'10px',
+
+    '&:hover' :{
+        transition: 'all 0.3s ease-in-out',
+        transform: 'scale(1.03)',
+        backgroundColor:"#c0450b"
+    }
+}

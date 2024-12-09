@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, Checkbox } from "@mui/material";
 import Input from "../../../utils/Button/Input";
 import { AddSongButton, Container } from "./styles";
 import { useEffect, useState } from "react";
@@ -18,7 +18,7 @@ export const Songs = () => {
   const [artist,setArtist] = useState<Option[]>([]);
   const[selectedArtist,setSelectedArtist] = useState<Option>();
   const[selectedAlbum,setSelectedAlbum] = useState<Option>();
-  
+  const[isCascade,setIsCascade] = useState(false);
 
   useEffect(() => {
     setHeader(["Name", "Album","artist"]);
@@ -52,7 +52,7 @@ export const Songs = () => {
        setAlbum(albums_list)
     }
   }
-  
+
   function getSongs(albums:AlbumResponse[],artists:ArtistResponse[]) {
     options.map((opt: string) => {
       const local_data = localStorage.getItem(`@${opt}`);
@@ -95,7 +95,7 @@ export const Songs = () => {
 
           } 
         },
-        cascade : true
+        cascade : isCascade
       }
   
       await api.post('/invoke/deleteAsset',query);
@@ -197,6 +197,16 @@ export const Songs = () => {
         }}
         value={selectedArtist?.value || ""}
       />
+
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <Checkbox
+          checked={isCascade}
+          onChange={() => setIsCascade(!isCascade)}
+          color="primary"
+        />
+        <span>Excluir itens relacionados</span>
+      </div>
+    
 
       <div style={{width:'100%',display:'flex',justifyContent:'space-between'}}>
         <Button variant="contained" sx={AddSongButton} onClick={()=> handleAddSong()}>

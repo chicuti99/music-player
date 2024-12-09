@@ -28,44 +28,55 @@ export interface ITablesAlbums {
   year:number;
   artist : string
 }
-export interface AlbumResponse {
-  "@assetType": string;
-  "@key": string;       
-  "@lastTouchBy": string;
-  "@lastTx": string;
-  "@lastUpdated": string;
-  artist: {
+  export interface AlbumResponse {
+    "@assetType": string;
+    "@key": string;       
+    "@lastTouchBy": string;
+    "@lastTx": string;
+    "@lastUpdated": string;
+    artist: {
+      "@assetType": string;
+      "@key": string;
+    };
+    name: string;         
+    year: number;
+  }
+
+  export interface SongResponse 
+    {
+      "@assetType": string;
+      "@key": string,
+      "@lastTouchBy": string,
+      "@lastTx": string,
+      "@lastUpdated": string,
+      album: {
+          "@assetType": string,
+          "@key": string
+      },
+      name: string
+  }
+
+  export interface AlbumAPI {
     "@assetType": string;
     "@key": string;
-  };
-  name: string;         
-  year: number;
-}
-
-export interface SongResponse 
-  {
-    "@assetType": string;
-    "@key": string,
-    "@lastTouchBy": string,
-    "@lastTx": string,
-    "@lastUpdated": string,
-    album: {
-        "@assetType": string,
-        "@key": string
-    },
-    name: string
-}
-
-export interface ArtistResponse 
-  {
-    "@assetType": string;
-    "@key": string,
-    "@lastTouchBy": string,
-    "@lastTx": string,
-    "@lastUpdated": string,
-    country:string, 
-    name: string
-}
+    name: string;
+    artist: {
+      "@assetType": string;
+      "@key": string;
+      name: string;
+    };
+  }
+  
+  export interface ArtistResponse 
+    {
+      "@assetType": string;
+      "@key": string,
+      "@lastTouchBy": string,
+      "@lastTx": string,
+      "@lastUpdated": string,
+      country:string, 
+      name: string
+  }
 
 
 export interface PlaylistResponse 

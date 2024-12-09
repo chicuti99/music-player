@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, Checkbox } from "@mui/material";
 import Input from "../../../utils/Button/Input";
 import { AddAlbumButton, Container } from "./styles";
 import { useEffect, useState } from "react";
@@ -18,7 +18,8 @@ export const Albums = () => {
   const [year,setYear] = useState(2000);
   const [artists,setArtists] = useState<Option[]>([])
   const[selectedArtist,setSelectedArtist] = useState<Option>()
-  
+  const[isCascade,setIsCascade] = useState(false);
+
 
   useEffect(() => {
     setHeader(["Name", "Artist", "Year"]);
@@ -33,7 +34,7 @@ export const Albums = () => {
           name : selectedAlbum.artist
         } 
       },
-      cascade : true
+      cascade : isCascade
     }
 
     await api.post('/invoke/deleteAsset',query);
@@ -162,7 +163,14 @@ export const Albums = () => {
         value={year}
       />
 
-    
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <Checkbox
+          checked={isCascade}
+          onChange={() => setIsCascade(!isCascade)}
+          color="primary"
+        />
+        <span>Excluir itens relacionados</span>
+      </div>
         <div style={{width:'100%',display:'flex',justifyContent:'space-between'}}>
         <Button variant="contained" sx={AddAlbumButton} onClick={() => handleAddAlbum()}>
           Add album
