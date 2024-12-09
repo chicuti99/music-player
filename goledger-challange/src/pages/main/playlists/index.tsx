@@ -14,7 +14,6 @@ export const Playlist = () => {
 
   const options = ['Album', 'Song', 'Artist', 'Playlist'];
   const [name, setName] = useState('');
-  const [album, setAlbum] = useState('');
   const [songsList, setSongList] = useState<Option[]>([]);
   const [selectedSongs, setSelectedSongs] = useState<Option>();
   const [listOfSelectedSongs, setListOfSelectedSongs] = useState<Option[]>([]);
@@ -24,10 +23,10 @@ export const Playlist = () => {
   const[isPrivate,setIsPrivate] = useState(false)
 
   useEffect(() => {
-    setHeader(["Name", "Songs"]);
+    setHeader(["Name", "Musics","Songs"]);
   }, [setHeader]);
 
-  function getAlbumsAndArtists() {
+  function getAlbumsAndArtists(parsedSongs:SongResponse[]) {
     const local_artists = localStorage.getItem("@Artist");
     const local_album = localStorage.getItem("@Album");
 
@@ -40,6 +39,9 @@ export const Playlist = () => {
       const parsedArtist = JSON.parse(local_artists);
       setArtists(parsedArtist);
     }
+
+    getPlaylist(parsedSongs)
+    
   }
 
   function getArtist() {
@@ -54,10 +56,11 @@ export const Playlist = () => {
       });
 
       setSongList(songs);
+      getAlbumsAndArtists(parsedSongs);
     }
   }
 
-  function getPlaylist() {
+  function getPlaylist(parsedSongs:SongResponse[]) {
     options.map((opt: string) => {
       const local_data = localStorage.getItem(`@${opt}`);
       if (local_data) {
@@ -66,9 +69,13 @@ export const Playlist = () => {
           const newPlaylist = parsedData.map((data: PlaylistResponse): ITablesPlaylists => ({
             name: data.name,
             private: data.private,
-            songs: []
+            songs: data.songs.map((song) => song["@key"]),
+            musics: data.songs.map((song) => {
+              const findSong = parsedSongs.find((tempSong) => tempSong["@key"] === song["@key"]);
+              return findSong?.name || "";
+            })
+            
           }));
-
           setPlaylist(newPlaylist);
         }
       }
@@ -76,9 +83,8 @@ export const Playlist = () => {
   }
 
   useEffect(() => {
-    getPlaylist();
     getArtist();
-    getAlbumsAndArtists();
+    
   }, []);
 
   const deletePlaylist = async () => {
@@ -140,7 +146,7 @@ export const Playlist = () => {
     return {
       update: {
         "@assetType": "playlist",
-        name: "Testando 232",
+        name: name,
         private: isPrivate,
         songs: listOfSelectedSongs.map((song) => ({
           "@assetType": "song",

@@ -28,6 +28,7 @@ export const Tables = ({content, type}: ITables) => {
         if (isAlbum(item)) {
           setSelectedAlbum(item);
         } else if (isPlaylist(item)) {
+            console.log(item)
           setSelectedPlaylist(item);
         } else if (isSong(item)) {
           setSelectedSong(item);
