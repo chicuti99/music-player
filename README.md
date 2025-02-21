@@ -25,7 +25,7 @@ Antes de começar, certifique-se de que o seu ambiente de desenvolvimento atende
 3. **Abrindo a pasta**:
     abra a pasta do repositorio e entre dentro de goledger-challange,caso esteja no vs code use 
     ```bash
-    cd goledger-challange
+    cd player
 
 4. **Instalando as dependencias**:
     ```bash
