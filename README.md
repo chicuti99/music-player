@@ -28,7 +28,12 @@ Antes de começar, certifique-se de que o seu ambiente de desenvolvimento atende
     cd goledger-challange
 
 4. **Instalando as dependencias**:
+    ```bash
     npm install
 
 5. **Iniciando o projeto**;
-    execute npm run dev no terminal,depois va no endereço indicado no terminal
+    execute npm run dev no terminal,depois va no endereço indicado no terminal ou ctrl + click
+
+6. **login**;
+    para executar o login digite qualquer login e senha,a validação era meramente demonstrativa
+
