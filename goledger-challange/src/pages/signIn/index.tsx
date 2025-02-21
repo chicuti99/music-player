@@ -3,7 +3,7 @@ import { ButtonArea, ButtonStyle, Container, Content, Header, InputArea, labelSt
 import { ThemeProvider } from '@mui/material/styles';
 import { Button } from "@mui/material";
 import Input from "../../utils/Button/Input";
-import api, { setBasicAuth } from "../../services/api";
+import { setBasicAuth } from "../../services/api";
 import { useState } from "react";
 import toast from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
@@ -30,20 +30,13 @@ export const SignIn = ()=> {
     }
     try{
     setBasicAuth(user);
-    const response = await api.get('/query/getSchema');
-    
-    if (response.status === 401) {
-      toast.error('Login ou senha inválidos');
-    } 
-    
-    else if (response.status === 200) {
       localStorage.setItem('user', JSON.stringify(user));
       localStorage.setItem('isAuthorized', 'true');
       toast.success('Login realizado com sucesso!');
       navigate('/main'); 
+  //  }
     }
-    }
-    catch(err: any){
+    catch(err){
       toast.error('erro ao fazer login');
       console.log(err)
     }

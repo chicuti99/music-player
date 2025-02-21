@@ -22,11 +22,13 @@ Antes de começar, certifique-se de que o seu ambiente de desenvolvimento atende
     Faça o download da versão LTS recomendada para o seu sistema operacional.
     Siga as instruções do instalador.
 
-3. **Instalando as dependencias**:
-    npm run dev
+3. **Abrindo a pasta**:
+    abra a pasta do repositorio e entre dentro de goledger-challange,caso esteja no vs code use 
+    ```bash
+    cd goledger-challange
 
-4. **Iniciando o projeto**;
+4. **Instalando as dependencias**:
+    npm install
+
+5. **Iniciando o projeto**;
     execute npm run dev no terminal,depois va no endereço indicado no terminal
-
-5. **Instruções de uso**;
-    use o login psAdmin e senha goledger para entra. apos o login,sera redirecionado para o endereço /main
